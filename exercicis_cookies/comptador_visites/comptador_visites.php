@@ -2,13 +2,10 @@
 $producto1 = 29.90;
 $producto2 = 49.90;
 $producto3 = 89.00;
+$seleccion = $_POST["producto"] ?? "";
 $descuento = $_POST['descuento'] ?? '';
 $cookie_contador = ($_COOKIE['contador'] ?? 0) + 1;
-$descuento_gastado = ($_COOKIE['descuento'] ?? 'false') === 'true';
 setcookie("contador", $cookie_contador, time() + 3600 * 24 * 30);
-setcookie("descuento", $descuento_gastado, time() + 3600 * 24 * 30);
-$descuento20 = "BOTIGA20";
-$descuento50 = "BOTIGA50";
 ?>
 
 <!DOCTYPE html>
@@ -21,30 +18,12 @@ $descuento50 = "BOTIGA50";
 
   <h1>Finalizar compra</h1>
 
-  <form action="./comptador_visites.php" method="post">
+  <form action="" method="post">
 
   <h2>Datos personales</h2>
   <p>
     <label for="nombre">Nombre completo:</label><br>
     <input type="text" id="nombre" name="nombre" required>
-  </p>
-  <p>
-    <label for="email">Correo electrónico:</label><br>
-    <input type="email" id="email" name="email">
-  </p>
-
-  <h2>Dirección de envío</h2>
-  <p>
-    <label for="direccion">Dirección:</label><br>
-    <input type="text" id="direccion" name="direccion">
-  </p>
-  <p>
-    <label for="ciudad">Ciudad:</label><br>
-    <input type="text" id="ciudad" name="ciudad">
-  </p>
-  <p>
-    <label for="cp">Código postal:</label><br>
-    <input type="text" id="cp" name="cp">
   </p>
 
   <h2>Pedido</h2>
@@ -56,16 +35,40 @@ $descuento50 = "BOTIGA50";
       <option value="producto3">Producto 3</option>
     </select>
   </p>
-  <p>
-    <label for="cantidad">Cantidad:</label><br>
-    <input type="number" id="cantidad" name="cantidad" value="1" min="1">
-  </p>
 
   <h2>Descuento</h2>
   <p>
-    <label for="descuento">Código de descuento:</label><br>
+  <?php 
+    if ($cookie_contador >= 5 && $cookie_contador < 10) {
+      echo "Oferta exclusiva! Utilitza el codi BOTIGA20 per obtenir un 20% de descompte en les teves primeres compres a la botiga";
+    } elseif ($cookie_contador >= 10) {
+      echo "Oferta exclusiva sols per a tu! Utilitza el codi BOTIGA50 per obtenir un 50% de descompte en les teves primeres compres a la botiga";
+    }
+  ?> <br><br>
+    <label for="descuento">Código de descuento:</label>
     <input type="text" id="descuento" name="descuento">
   </p>
+  <?php
+  if ($seleccion === "producto1") {
+    $total = $producto1;
+} elseif ($seleccion === "producto2") {
+    $total = $producto2;
+} elseif ($seleccion === "producto3") {
+    $total = $producto3;
+}
+  if ($descuento === "BOTIGA20") {
+    $total_mult = $total*0.80;
+    $cookie_contador = 0;
+    setcookie("contador", $cookie_contador, time() + 3600 * 24 * 30);
+    echo "<p>$total_mult</p>";
+} elseif ($descuento === "BOTIGA50") {
+    $total_mult = $total*0.50;
+    $cookie_contador = 0;
+    setcookie("contador", $cookie_contador, time() + 3600 * 24 * 30);
+    echo "<p>$total_mult</p>";
+}
+  ?>
   <button id="comprar">Comprar</button>
+  </form>
 </body>
 </html>
