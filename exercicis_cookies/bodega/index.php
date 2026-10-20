@@ -1,3 +1,15 @@
+<?php
+if (isset($_POST['lang']) && isset($_POST['coin'])) {
+  $idioma_cookie = $_POST['lang']; #hay que llamar al name, no a la id.
+  $check_edad_cookie = $_POST['edad'] ?? 0  ; # A la hora de recibir info del form al post lo que se envia es una string (importante si el valor que estabamos enviando es un int).
+  $moneda_cookie = $_POST['coin'];
+  setcookie("moneda", $moneda_cookie, time() + 3600 * 24 * 30, "/"); # La parte del time es para decirle basicamente, (el tiempo de ahora + 30 dias)
+  setcookie("majoredat", $check_edad_cookie, time() + 3600 * 24 * 30, "/"); # 3600 segundos en una hora, 3600 * 24 segundos en un dia.
+  setcookie("idioma", $idioma_cookie, time() + 3600 * 24 * 30, "/"); # 3600 * 24 * 30 segundos en 30 dias
+  header("Location: bodega.php");
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +19,7 @@
 <body>
   <h1>Tienda de vino</h1>
 
-  <form action="./bodega.php" method="post">
+  <form action="" method="post">
 
     <fieldset id="idioma">
       <legend>Idioma</legend>

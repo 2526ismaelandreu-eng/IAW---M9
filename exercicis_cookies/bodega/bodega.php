@@ -1,12 +1,9 @@
 <?php
-$idioma = $_POST['lang']; #hay que llamar al name, no a la id.
-$check_edad = $_POST['edad'] ?? 0; # A la hora de recibir info del form al post lo que se envia es una string (importante si el valor que estabamos enviando es un int).
-$moneda = $_POST['coin'];
 $garrigues = 25; # Esto esta en euros
 $terrases = 50; # Esto esta en euros
-setcookie("moneda", $moneda, time() + 3600 * 24 * 30); # La parte del time es para decirle basicamente, (el tiempo de ahora + 30 dias)
-setcookie("majoredat", $check_edad, time() + 3600 * 24 * 30); # 3600 segundos en una hora, 3600 * 24 segundos en un dia.
-setcookie("idioma", $idioma, time() + 3600 * 24 * 30); # 3600 * 24 * 30 segundos en 30 dias
+$idioma = $_COOKIE['idioma']; #hay que llamar al name, no a la id.
+$check_edad = $_COOKIE['majoredat']; # A la hora de recibir info del form al post lo que se envia es una string (importante si el valor que estabamos enviando es un int).
+$moneda = $_COOKIE['moneda'];
 if ($check_edad == 0) { # A la hora de añadir comparaciones con and ambos tienen que estar dentro del mismo parentesis.
   header("Location: menor_edad.html");
   exit;
