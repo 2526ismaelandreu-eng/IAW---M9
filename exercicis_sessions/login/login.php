@@ -1,22 +1,31 @@
 <?php
 session_start();
 
-$usuaris = [
-    'anna' => '1234',
-    'joan' => 'abcd',
-];
-
 if (isset($_POST['user'], $_POST['pass'])) {
     $user = $_POST['user'];
     $pass = $_POST['pass'];
 
-    if (isset($usuaris[$user]) && $usuaris[$user] === $pass) {
+    if ($user === "anna" && $pass === "anna") {
         $_SESSION['user'] = $user;
-        echo "Benvingut, " . $user . "!";
+        header("Location: pagina1.php");
+        exit;
     } else {
-        echo "Usuari o contrasenya incorrectes.";
+        header("Location: index.html");
+        exit;
     }
 } else {
-    echo "Falten dades.";
+    header("Location: index.html");
+    exit;
 }
 ?>
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <nav>
+    <a href="pagina1.php<?php echo session_name()."=".session_id()?>">enlace </a>
+  </nav>    
+</body>
+</html>
