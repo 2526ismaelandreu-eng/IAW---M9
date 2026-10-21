@@ -25,7 +25,7 @@ if (isset($_POST['user'], $_POST['pass'])) {
 </head>
 <body>
   <nav>
-    <a href="pagina1.php<?php echo session_name()."=".session_id()?>">enlace </a>
+    <a href="pagina1.php<?php echo session_name()."=".session_id()?>"></a>
   </nav>    
 </body>
 </html>

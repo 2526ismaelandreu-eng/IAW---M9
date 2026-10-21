@@ -13,10 +13,12 @@ if (!isset($_SESSION['user'])) {
 </head>
 <body>
   <nav>
-    <a href="pagina1.php">Inici</a> |
-    <a href="pagina2.html">Serveis</a> |
+    <?php echo ($_SESSION['user']); ?> |
+    <a href="./pagina1.php">Inici</a> |
+    <a href="./pagina2.php">Serveis</a> 
+    <a href="./pagina2.php<?php echo session_name()."=".session_id()?>"></a>
     <hr>
   </nav>
-  <h1>Benvingut, <?php echo ($_SESSION['user']); ?>!</h1>
+  <h1>Benvingut</h1>
 </body>
 </html>
