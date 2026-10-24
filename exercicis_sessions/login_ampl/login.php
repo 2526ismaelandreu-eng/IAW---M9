@@ -17,15 +17,3 @@ if (isset($_POST['user'], $_POST['pass'])) {
     header("Location: index.html");
     exit;
 }
-?>
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-  <meta charset="UTF-8">
-</head>
-<body>
-  <nav>
-    <a href="pagina1.php<?php echo session_name()."=".session_id()?>"></a>
-  </nav>    
-</body>
-</html>

@@ -14,8 +14,10 @@ if (!isset($_SESSION['user'])) {
 <body>
   <nav>
     <?php echo ($_SESSION['user']); ?> |
-    <a href="pagina1.php">Inici</a> |
-    <a href="pagina2.php">Serveis</a>
+    <a href="./pagina1.php?<?php session_destroy();?>">Cerrar sesion</a> |
+    <a href="./pagina1.php?<?php echo session_name()."=".session_id()?>">Inici</a>
+    <a href="./pagina2.php?<?php echo session_name()."=".session_id()?>">Serveis</a>
+    <hr>
   </nav>
   <hr>
 
