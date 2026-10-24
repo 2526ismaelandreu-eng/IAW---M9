@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Botiga</title>
+</head>
+<body>
+  <h1>Botiga</h1>
+
+  <h2>Samarreta</h2>
+  <p>Preu: 15.00 €</p>
+  <form action="./cistella_compra.php" method="post">
+    <input type="hidden" name="producte" value="Samarreta">
+    <input type="hidden" name="preu" value="15.00">
+    <label for="q1">Quantitat:</label>
+    <input type="number" id="q1" name="quantitat" min="1" value="1" required>
+    <button type="submit">Afegir a la cistella</button>
+  </form>
+  <hr>
+
+  <h2>Pantalons</h2>
+  <p>Preu: 30.00 €</p>
+  <form action="./cistella_compra.php" method="post">
+    <input type="hidden" name="producte" value="Pantalons">
+    <input type="hidden" name="preu" value="30.00">
+    <label for="q2">Quantitat:</label>
+    <input type="number" id="q2" name="quantitat" min="1" value="1" required>
+    <button type="submit">Afegir a la cistella</button>
+  </form>
+  <hr>
+
+  <a href="./resum.php">Finalitzar compra</a>
+</body>
+</html>
